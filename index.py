@@ -34,10 +34,11 @@ print(yt1.title)
 # print(yt1.streams)
 # print(yt1.captions)
 # yt1.streams.filter(file_extension='mp4').get_highest_resolution().download()
-# print(f'\n' + fuchsia + 'Downloading: ',yt1.title, '~ viewed', yt1.views, 'times.')
+print(f'\n' + fuchsia + 'Downloading: ',yt1.title, '~ viewed', yt1.views, 'times.')
 # yt1.streams.filter(file_extension='mp4').get_lowest_resolution().download()
 out_file = yt1.streams.filter(only_audio=True).first().download()
-# print(f'\nFinished downloading:  {yt1.title}' + reset_color)
+print(f'\nFinished downloading:  {yt1.title}' + reset_color)
 base, ext = os.path.splitext(out_file)
 new_file = base + '.mp3'
 os.rename(out_file, new_file)
+
