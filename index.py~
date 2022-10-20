@@ -57,7 +57,7 @@ import sys
 
 
 i = input("Enter channel exact name : ")
-c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+c = Channel(f'https://www.youtube.com/c/vevo/videos')
 print(f'Downloading videos by: {c.channel_name}')
 for video in c.videos:
     print(video.title)
