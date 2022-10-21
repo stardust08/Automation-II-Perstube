@@ -7,14 +7,14 @@ from operator import index
 
 
 if __name__ == '__main__':
-    print("Choose an option from below : \n")
-    print("Enter 1 to download a single video or music : \n")
-    print("Enter 2 to download a whole playlist : \n")
-    print("Enter 3 to download all videos from channel: \n")
+    print("Choose an option from below 👇👇")
+    print("Enter 1 to download a single video or music 😂")
+    print("Enter 2 to download a whole playlist 🥲")
+    print("Enter 3 to download all videos from channel 😑")
     question = 0
     while True:
         try:
-            question = int(input("Out of this which option would you like to choose ? : "))
+            question = int(input("\nOut of this which option would you like to choose ? : "))
             if question>=1 and question<=3:
                 break
             else:
@@ -23,7 +23,9 @@ if __name__ == '__main__':
             print("Error! Enter an integer")
 
     if question==1:
-        print("Again now choose an option : \n")
-        print("skfj")
-    else:
-        print("ofjf")
+        print("\nAgain now choose an option 😤")
+        print("Enter 1 to download via Link 😀")
+        print("Enter 2 to download via Search 🧐 ")
+    elif question==3:
+        print("Enter 1 to give channel link 👍")
+        print("Enter 2 to search by name 🔎 ")
