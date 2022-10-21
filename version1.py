@@ -6,6 +6,19 @@ import sys
 from operator import index
 
 
+
+def errorHandling():
+    while True:
+        try:
+            question1 = int(input("\nOut of this which option would you like to choose ? : "))
+            if question1>=1 and question1<3:
+                break
+            else:
+                print("Enter in range of [1,2]")
+        except ValueError:
+            print("Error! Enter an integer")
+
+
 if __name__ == '__main__':
     print("Choose an option from below 👇👇")
     print("Enter 1 to download a single video or music 😂")
@@ -26,6 +39,8 @@ if __name__ == '__main__':
         print("\nAgain now choose an option 😤")
         print("Enter 1 to download via Link 😀")
         print("Enter 2 to download via Search 🧐 ")
+        errorHandling()
     elif question==3:
         print("Enter 1 to give channel link 👍")
         print("Enter 2 to search by name 🔎 ")
+        errorHandling()
