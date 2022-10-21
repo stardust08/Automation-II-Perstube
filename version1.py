@@ -20,10 +20,7 @@ def errorHandling():
 
 
 if __name__ == '__main__':
-    print("Choose an option from below 👇👇")
-    print("Enter 1 to download a single video or music 😂")
-    print("Enter 2 to download a whole playlist 🥲")
-    print("Enter 3 to download all videos from channel 😑")
+    print("Choose an option from below 👇👇\n","Enter 1 to download a single video or music 😂\n","Enter 2 to download a whole playlist 🥲\n","Enter 3 to download all videos from channel 😑")
     question = 0
     while True:
         try:
@@ -36,11 +33,8 @@ if __name__ == '__main__':
             print("Error! Enter an integer")
 
     if question==1:
-        print("\nAgain now choose an option 😤")
-        print("Enter 1 to download via Link 😀")
-        print("Enter 2 to download via Search 🧐 ")
+        print("\nAgain now choose an option 😤\n","Enter 1 to download via Link 😀\n","Enter 2 to download via Search 🔎 ")
         errorHandling()
     elif question==3:
-        print("Enter 1 to give channel link 👍")
-        print("Enter 2 to search by name 🔎 ")
+        print("\nAgain now choose an option 😤\n","Enter 1 to give channel link 👍\n","Enter 2 to search by name 🔎 ")
         errorHandling()
