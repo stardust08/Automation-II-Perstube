@@ -5,16 +5,25 @@ import os
 import sys
 from operator import index
 
+def playlist():
+    url = input("Enter URL of Playlist : ")
+    pl = Playlist(url)
+    print("\nEnter 1 to see the titles of playlist and videos of it 📽️\n","Enter 2 to download all videos at high resolution ⚡\n","Enter 3 to download all videos in low resolution 🐽")
+    errorHandling(1,3)
+    print(pl.title)
+    for video in pl.videos:
+        print(f'Title : {video.title}')
+    for url in pl.video_urls:
+        print(url)
 
-
-def errorHandling():
+def errorHandling(param1,param2):
     while True:
         try:
             question1 = int(input("\nOut of this which option would you like to choose ? : "))
-            if question1>=1 and question1<3:
+            if question1>=param1 and question1<=param2:
                 break
             else:
-                print("Enter in range of [1,2]")
+                print(f'Enter in range of [{param1,param2}]')
         except ValueError:
             print("Error! Enter an integer")
 
@@ -34,7 +43,9 @@ if __name__ == '__main__':
 
     if question==1:
         print("\nAgain now choose an option 😤\n","Enter 1 to download via Link 😀\n","Enter 2 to download via Search 🔎 ")
-        errorHandling()
+        errorHandling(1,2)
+    if question==2:
+        playlist()
     elif question==3:
         print("\nAgain now choose an option 😤\n","Enter 1 to give channel link 👍\n","Enter 2 to search by name 🔎 ")
-        errorHandling()
+        errorHandling(1,2)
