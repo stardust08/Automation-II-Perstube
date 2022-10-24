@@ -22,10 +22,14 @@ def playlist():
                 print(url)
         case 2:
          for url in pl.video_urls:
-            yt = YouTube(url)
-            print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
-            yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
-            print(f'\nFinished downloading:  {yt.title}' + reset_color)
+            try:
+                yt = YouTube(url)
+            except VideoUnavailable:
+                print(f'Video {url} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+                yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
+                print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
          for url in pl.video_urls:
             yt = YouTube(url)
