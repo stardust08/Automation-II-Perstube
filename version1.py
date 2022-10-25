@@ -1,5 +1,5 @@
 from cgi import print_environ
-from pytube import YouTube,Playlist,Channel,Search
+from pytube import YouTube,Playlist,Channel,Search,exceptions
 from pytube.cli import on_progress
 import os
 import sys
@@ -24,7 +24,7 @@ def playlist():
          for url in pl.video_urls:
             try:
                 yt = YouTube(url)
-            except VideoUnavailable:
+            except exceptions.VideoUnavailable:
                 print(f'Video {url} is unavaialable, skipping.')
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
@@ -32,14 +32,22 @@ def playlist():
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
          for url in pl.video_urls:
-            yt = YouTube(url)
-            print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            try:
+                yt = YouTube(url)
+            except exceptions.VideoUnavailable:
+                print(f'Video {url} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
          for url in pl.video_urls:
-            yt = YouTube(url)
-            print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            try:
+                yt = YouTube(url)
+            except exceptions.VideoUnavailable:
+                print(f'Video {url} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             out_file = yt.streams.filter(only_audio=True).first().download()
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
             base, ext = os.path.splitext(out_file)
