@@ -54,6 +54,97 @@ def playlist():
             new_file = base+ '.mp3'
             os.rename(out_file, new_file)
 
+
+def singleLink():
+    link = input("Enter link of video : ")
+    print("Enter 1 to see the title of video \n","Enter 2 to download all videos at high resolution ⚡\n","Enter 3 to download all videos in low resolution 🐽\n","Enter 4 to download audio 🎶\n")
+    answer = errorHandling(1,4)
+    match answer:
+        case 1:
+            try:
+                yt = YouTube(link)
+            except exceptions.VideoUnavailable:
+                print(f'Video {link} is unavaialable, skipping.')
+            else:
+                print(yt.title)
+        case 2:
+            try:
+                yt = YouTube(link)
+            except exceptions.VideoUnavailable:
+                print(f'Video {link} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+                yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
+                print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 3:
+            try:
+                yt = YouTube(link)
+            except exceptions.VideoUnavailable:
+                print(f'Video {link} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
+            print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 4:
+            try:
+                yt = YouTube(link)
+            except exceptions.VideoUnavailable:
+                print(f'Video {link} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            out_file = yt.streams.filter(only_audio=True).first().download()
+            print(f'\nFinished downloading:  {yt.title}' + reset_color)
+            base, ext = os.path.splitext(out_file)
+            new_file = base+ '.mp3'
+            os.rename(out_file, new_file)
+
+
+
+def searchLink():
+    result = Search(input("Enter your search : "))
+    print(f'Search complete \n')
+    videoId = result.results[0].video_id
+    print("\nEnter 1 to see the title of video \n","Enter 2 to download all videos at high resolution ⚡\n","Enter 3 to download all videos in low resolution 🐽\n","Enter 4 to download audio 🎶\n")
+    answer = errorHandling(1,4)
+    match answer:
+        case 1:
+            try:
+                yt = YouTube("https://youtu.be/"+videoId)
+            except exceptions.VideoUnavailable:
+                print(f'Video {yt} is unavaialable, skipping.')
+            else:
+                print(yt.title)
+        case 2:
+            try:
+                yt = YouTube("https://youtu.be/"+videoId)
+            except exceptions.VideoUnavailable:
+                print(f'Video {yt} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+                yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
+                print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 3:
+            try:
+                yt = YouTube("https://youtu.be/"+videoId)
+            except exceptions.VideoUnavailable:
+                print(f'Video {yt} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
+            print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 4:
+            try:
+                yt = YouTube("https://youtu.be/"+videoId)
+            except exceptions.VideoUnavailable:
+                print(f'Video {yt} is unavaialable, skipping.')
+            else:
+                print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+            out_file = yt.streams.filter(only_audio=True).first().download()
+            print(f'\nFinished downloading:  {yt.title}' + reset_color)
+            base, ext = os.path.splitext(out_file)
+            new_file = base+ '.mp3'
+            os.rename(out_file, new_file)
+
 def errorHandling(param1,param2):
     while True:
         try:
@@ -81,7 +172,11 @@ if __name__ == '__main__':
 
     if question==1:
         print("\nAgain now choose an option 😤\n","Enter 1 to download via Link 😀\n","Enter 2 to download via Search 🔎 ")
-        errorHandling(1,2)
+        answer = errorHandling(1,2)
+        if answer==1:
+            singleLink()
+        else:
+            searchLink()
     if question==2:
         playlist()
     elif question==3:
