@@ -177,18 +177,19 @@ def channelLink():
                     yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
-            for url in channel.video_urls:
+            for video in channel.videos:
                 try:
-                    yt = YouTube(url)
+                    print(f'\n' + fuchsia + 'Downloading: ',video.title, '~ viewed', video.views, 'times.')
+                    out_file = video.streams.filter(only_audio=True).first().download()
+                    print(f'\nFinished downloading:  {yt.title}' + reset_color)
+                    base, ext = os.path.splitext(out_file)
+                    new_file = base+ '.mp3'
+                    os.rename(out_file, new_file)
                 except exceptions.VideoUnavailable:
                     print(f'Video {url} is unavaialable, skipping.')
-                else:
-                    print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
-                out_file = yt.streams.filter(only_audio=True).first().download()
-                print(f'\nFinished downloading:  {yt.title}' + reset_color)
-                base, ext = os.path.splitext(out_file)
-                new_file = base+ '.mp3'
-                os.rename(out_file, new_file)
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️" )
+                    
             
 
 
