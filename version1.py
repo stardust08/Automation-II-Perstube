@@ -145,6 +145,25 @@ def searchLink():
             new_file = base+ '.mp3'
             os.rename(out_file, new_file)
 
+def channelLink():
+    url = input("Enter URL of channel : ")
+    channel = Channel(url)
+    print(f'Channel Name is : {channel.channel_name}')
+
+    print("\nEnter 1 to see the title of video \n","Enter 2 to download all videos at high resolution ⚡\n","Enter 3 to download all videos in low resolution 🐽\n","Enter 4 to download audio 🎶\n")
+    answer = errorHandling(1,4)
+    match answer:
+        case 1:
+            for video in channel.videos:
+                print(f'Title : {video.title}')
+            for url in channel.video_urls:
+                print(url)
+    
+    
+
+def channelSearch():
+    print("Hey there!!")
+
 def errorHandling(param1,param2):
     while True:
         try:
@@ -177,8 +196,12 @@ if __name__ == '__main__':
             singleLink()
         else:
             searchLink()
-    if question==2:
+    elif question==2:
         playlist()
     elif question==3:
         print("\nAgain now choose an option 😤\n","Enter 1 to give channel link 👍\n","Enter 2 to search by name 🔎 ")
-        errorHandling(1,2)
+        answer = errorHandling(1,2)
+        if answer == 1:
+            channelLink()
+        else:
+            channelSearch()
