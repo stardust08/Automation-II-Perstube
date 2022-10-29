@@ -50,6 +50,8 @@ def playlist():
                 yt = YouTube(url)
             except exceptions.VideoUnavailable:
                 print(f'Video {url} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             out_file = yt.streams.filter(only_audio=True).first().download()
@@ -69,6 +71,8 @@ def singleLink():
                 yt = YouTube(link)
             except exceptions.VideoUnavailable:
                 print(f'Video {link} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(yt.title)
         case 2:
@@ -76,6 +80,8 @@ def singleLink():
                 yt = YouTube(link)
             except exceptions.VideoUnavailable:
                 print(f'Video {link} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
@@ -85,6 +91,8 @@ def singleLink():
                 yt = YouTube(link)
             except exceptions.VideoUnavailable:
                 print(f'Video {link} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
@@ -94,6 +102,8 @@ def singleLink():
                 yt = YouTube(link)
             except exceptions.VideoUnavailable:
                 print(f'Video {link} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             out_file = yt.streams.filter(only_audio=True).first().download()
@@ -116,6 +126,8 @@ def searchLink():
                 yt = YouTube("https://youtu.be/"+videoId)
             except exceptions.VideoUnavailable:
                 print(f'Video {yt} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(yt.title)
         case 2:
@@ -123,6 +135,8 @@ def searchLink():
                 yt = YouTube("https://youtu.be/"+videoId)
             except exceptions.VideoUnavailable:
                 print(f'Video {yt} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
@@ -132,6 +146,8 @@ def searchLink():
                 yt = YouTube("https://youtu.be/"+videoId)
             except exceptions.VideoUnavailable:
                 print(f'Video {yt} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
@@ -141,6 +157,8 @@ def searchLink():
                 yt = YouTube("https://youtu.be/"+videoId)
             except exceptions.VideoUnavailable:
                 print(f'Video {yt} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             out_file = yt.streams.filter(only_audio=True).first().download()
@@ -166,6 +184,8 @@ def channelLink():
                     yt = YouTube(url)
                 except exceptions.VideoUnavailable:
                     print(f'Video {url} is unavaialable, skipping.')
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️" )
                 else:
                     print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
@@ -176,6 +196,8 @@ def channelLink():
                     yt = YouTube(video)
                 except exceptions.VideoUnavailable:
                     print(f'Video {video} is unavaialable, skipping.')
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️" )
                 else:
                     print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
@@ -195,12 +217,10 @@ def channelLink():
                     base, ext = os.path.splitext(out_file)
                     new_file = base+ '.mp3'
                     os.rename(out_file, new_file)
-                    
-            
-
 
 def channelSearch():
-    print("Hey there!!")
+    query = input("Enter channel Name : ")
+    
 
 def errorHandling(param1,param2):
     while True:

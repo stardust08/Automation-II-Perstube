@@ -1,11 +1,13 @@
 from operator import index
 from tkinter.ttk import Progressbar
+from turtle import width
 from pytube import YouTube,Playlist,Channel
 import pprint
 from pytube import Search
 from pytube.cli import on_progress
 import os
 import sys
+from youtubesearchpython import ChannelsSearch
 # yt = YouTube("https://youtu.be/pJZ9tT8OwFk")
 # p = Playlist("https://youtube.com/playlist?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2")
 # p.download()
@@ -56,8 +58,8 @@ reset_color = '\033[39m'
 
 
 
-i = input("Enter channel exact link : ")
-c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+i = input("Enter channel name : ")
+# c = Channel(f'https://www.youtube.com/c/neetcode/videos')
 # c = Channel(i)
 # print(f'Downloading videos by: {c.channel_name}')
 # for video in c.video_urls:
@@ -69,3 +71,8 @@ c = Channel(f'https://www.youtube.com/c/neetcode/videos')
 #     base, ext = os.path.splitext(out_file)
 #     new_file = base+ '.mp3'
 #     os.rename(out_file, new_file)
+
+
+
+channelSearch = ChannelsSearch(i,limit=10)
+pprint.pprint(dict(channelSearch.result()),width=2)
