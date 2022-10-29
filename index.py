@@ -17,8 +17,8 @@ import sys
 # print(str(yt.description))
 # print(yt.streams)
 
-# fuchsia = '\033[38;2;255;00;255m'   #  color as hex #FF00FF
-# reset_color = '\033[39m'
+fuchsia = '\033[38;2;255;00;255m'   #  color as hex #FF00FF
+reset_color = '\033[39m'
 
 # s = Search(input("Enter your search : "))
 # print(s.results[0])
@@ -56,8 +56,16 @@ import sys
 
 
 
-i = input("Enter channel exact name : ")
-c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+i = input("Enter channel exact link : ")
+# c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+c = Channel(i)
 print(f'Downloading videos by: {c.channel_name}')
-for video in c.videos:
-    print(video.title)
+for video in c.video_urls:
+    print(video)
+    yt = YouTube(video)
+    print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+    out_file = yt.streams.filter(only_audio=True).first().download()
+    print(f'\nFinished downloading:  {yt.title}' + reset_color)
+    base, ext = os.path.splitext(out_file)
+    new_file = base+ '.mp3'
+    os.rename(out_file, new_file)
