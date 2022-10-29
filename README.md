@@ -1,4 +1,3 @@
-# Automation-II-Perstube
-Personal Youtube for downlaoding videos in audio + video format with captions and a lot.
+# Automation-II-Perstube 
+How to Get Started?
 
-Currently just trying. Maybe will ready in 2-3 days fully along with next project topic of spotify song downloader!!
