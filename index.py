@@ -75,4 +75,9 @@ i = input("Enter channel name : ")
 
 
 channelSearch = ChannelsSearch(i,limit=10)
-pprint.pprint(dict(channelSearch.result()),width=2)
+ans = channelSearch.result()
+pprint.pprint(dict(ans),width=2)
+
+print ("\nnext line\n")
+# pprint.pprint(dict(ans['result'][0]),width=1)
+print(ans['result'][0]['link'])
