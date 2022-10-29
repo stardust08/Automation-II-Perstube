@@ -57,15 +57,15 @@ reset_color = '\033[39m'
 
 
 i = input("Enter channel exact link : ")
-# c = Channel(f'https://www.youtube.com/c/neetcode/videos')
-c = Channel(i)
-print(f'Downloading videos by: {c.channel_name}')
-for video in c.video_urls:
-    print(video)
-    yt = YouTube(video)
-    print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
-    out_file = yt.streams.filter(only_audio=True).first().download()
-    print(f'\nFinished downloading:  {yt.title}' + reset_color)
-    base, ext = os.path.splitext(out_file)
-    new_file = base+ '.mp3'
-    os.rename(out_file, new_file)
+c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+# c = Channel(i)
+# print(f'Downloading videos by: {c.channel_name}')
+# for video in c.video_urls:
+#     print(video)
+#     yt = YouTube(video)
+#     print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
+#     out_file = yt.streams.filter(only_audio=True).first().download()
+#     print(f'\nFinished downloading:  {yt.title}' + reset_color)
+#     base, ext = os.path.splitext(out_file)
+#     new_file = base+ '.mp3'
+#     os.rename(out_file, new_file)

@@ -26,6 +26,8 @@ def playlist():
                 yt = YouTube(url)
             except exceptions.VideoUnavailable:
                 print(f'Video {url} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(file_extension='mp4').get_highest_resolution().download()
@@ -36,6 +38,8 @@ def playlist():
                 yt = YouTube(url)
             except exceptions.VideoUnavailable:
                 print(f'Video {url} is unavaialable, skipping.')
+            except KeyboardInterrupt:
+                print("OOPs feelin' like very strong keyboard stroke⌨️" )
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(file_extension='mp4').get_lowest_resolution().download()
