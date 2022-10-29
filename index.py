@@ -9,6 +9,8 @@ from pytube.cli import on_progress
 import os
 import sys
 from youtubesearchpython import ChannelsSearch
+from bs4 import BeautifulSoup
+import datetime as dt
 # yt = YouTube("https://youtu.be/pJZ9tT8OwFk")
 # p = Playlist("https://youtube.com/playlist?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2")
 # p.download()
@@ -98,7 +100,8 @@ reset_color = '\033[39m'
 # caption = yt.captions.get_by_language_code('en')
 # print(caption.xml_captions)
 
-yt = YouTube('https://youtu.be/3Tf-8pi_OLs')
+
+yt = YouTube('https://youtu.be/aV9gfuUhegE')
 caption = "Sorry didn't have any caption in this video"
 # print(caption)
 result = ['en','en-GB','a.en']
@@ -118,4 +121,5 @@ while checker:
 # print(caption['en']||caption['en-GB'])
 #to this selection view go run terminal help file edit
 
-print(caption.generate_srt_captions())
+print(caption)
+# print(a)
