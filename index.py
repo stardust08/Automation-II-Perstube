@@ -1,3 +1,4 @@
+from cmath import nan
 from operator import index
 from tkinter.ttk import Progressbar
 from turtle import width
@@ -58,7 +59,7 @@ reset_color = '\033[39m'
 
 
 
-i = input("Enter channel name : ")
+# i = input("Enter channel name : ")
 # c = Channel(f'https://www.youtube.com/c/neetcode/videos')
 # c = Channel(i)
 # print(f'Downloading videos by: {c.channel_name}')
@@ -73,14 +74,48 @@ i = input("Enter channel name : ")
 #     os.rename(out_file, new_file)
 
 
+# channelSearch = ChannelsSearch(i,limit=2)
+# ans = channelSearch.result()
+# pprint.pprint(dict(ans),width=2)
 
-channelSearch = ChannelsSearch(i,limit=2)
-ans = channelSearch.result()
-pprint.pprint(dict(ans),width=2)
-
-print ("\nnext line\n")
-# pprint.pprint(dict(ans['result'][0]),width=1)
-print(ans['result'][0]['link'])
+# print ("\nnext line\n")
+# # pprint.pprint(dict(ans['result'][0]),width=1)
+# print(ans['result'][0]['link'])
 
 
 # project finished. Feels so..
+
+# yt = YouTube('https://www.youtube.com/watch?v=aV9gfuUhegE')
+# # print(yt.)
+# # caption = yt.captions['a.en']
+
+# # print(caption.xml_captions)
+# # from pytube import YouTube
+
+# url = "https://www.youtube.com/watch?v=aV9gfuUhegE"
+
+# yt = YouTube(url)
+# caption = yt.captions.get_by_language_code('en')
+# print(caption.xml_captions)
+
+yt = YouTube('https://youtu.be/3Tf-8pi_OLs')
+caption = "Sorry didn't have any caption in this video"
+# print(caption)
+result = ['en','en-GB','a.en']
+result_cnt = 0
+checker = True
+while checker:
+    try:
+        caption = yt.captions[result[result_cnt]]
+        checker = False
+    except:
+        # print("Sorry didn't have any caption")
+        if result_cnt<2:
+            result_cnt+=1
+        else:
+            checker = False
+
+# print(caption['en']||caption['en-GB'])
+#to this selection view go run terminal help file edit
+
+print(caption.generate_srt_captions())
