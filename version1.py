@@ -5,6 +5,9 @@ import os
 import sys
 from operator import index
 from youtubesearchpython import ChannelsSearch
+from pathlib import Path
+
+downloads_path = str(Path.home()/"Downloads")
 
 fuchsia = '\033[38;2;255;00;255m'  # color as hex #FF00FF
 reset_color = '\033[39m'
@@ -35,7 +38,7 @@ def playlist():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(
-                        file_extension='mp4').get_highest_resolution().download()
+                        file_extension='mp4').get_highest_resolution().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             for url in pl.video_urls:
@@ -49,7 +52,7 @@ def playlist():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(
-                    file_extension='mp4').get_lowest_resolution().download()
+                    file_extension='mp4').get_lowest_resolution().download(downloads_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             for url in pl.video_urls:
@@ -63,7 +66,7 @@ def playlist():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                 out_file = yt.streams.filter(
-                    only_audio=True).first().download()
+                    only_audio=True).first().download(downloads_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
                 base, ext = os.path.splitext(out_file)
                 new_file = base + '.mp3'
@@ -96,7 +99,7 @@ def singleLink():
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(
-                    file_extension='mp4').get_highest_resolution().download()
+                    file_extension='mp4').get_highest_resolution().download(downloads_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             try:
@@ -109,7 +112,7 @@ def singleLink():
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(
-                file_extension='mp4').get_lowest_resolution().download()
+                file_extension='mp4').get_lowest_resolution().download(downloads_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             try:
@@ -121,7 +124,7 @@ def singleLink():
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            out_file = yt.streams.filter(only_audio=True).first().download()
+            out_file = yt.streams.filter(only_audio=True).first().download(downloads_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
@@ -156,7 +159,7 @@ def searchLink():
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(
-                    file_extension='mp4').get_highest_resolution().download()
+                    file_extension='mp4').get_highest_resolution().download(downloads_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             try:
@@ -169,7 +172,7 @@ def searchLink():
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(
-                file_extension='mp4').get_lowest_resolution().download()
+                file_extension='mp4').get_lowest_resolution().download(downloads_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             try:
@@ -181,7 +184,7 @@ def searchLink():
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            out_file = yt.streams.filter(only_audio=True).first().download()
+            out_file = yt.streams.filter(only_audio=True).first().download(downloads_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
@@ -212,7 +215,7 @@ def channelLink():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(
-                        file_extension='mp4').get_highest_resolution().download()
+                        file_extension='mp4').get_highest_resolution().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             for video in channel.video_urls:
@@ -226,7 +229,7 @@ def channelLink():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(
-                        file_extension='mp4').get_lowest_resolution().download()
+                        file_extension='mp4').get_lowest_resolution().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             for video in channel.video_urls:
@@ -240,7 +243,7 @@ def channelLink():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     out_file = yt.streams.filter(
-                        only_audio=True).first().download()
+                        only_audio=True).first().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
                     base, ext = os.path.splitext(out_file)
                     new_file = base + '.mp3'
@@ -274,7 +277,7 @@ def channelSearch():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(
-                        file_extension='mp4').get_highest_resolution().download()
+                        file_extension='mp4').get_highest_resolution().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             for video in channel.video_urls:
@@ -288,7 +291,7 @@ def channelSearch():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     yt.streams.filter(
-                        file_extension='mp4').get_lowest_resolution().download()
+                        file_extension='mp4').get_lowest_resolution().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             for video in channel.video_urls:
@@ -302,28 +305,11 @@ def channelSearch():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     out_file = yt.streams.filter(
-                        only_audio=True).first().download()
+                        only_audio=True).first().download(downloads_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
                     base, ext = os.path.splitext(out_file)
                     new_file = base + '.mp3'
                     os.rename(out_file, new_file)
-
-
-def caption(url):
-    yt = YouTube(url)
-    caption = "Sorry didn't have any caption in this video"
-    result = ['en', 'en-GB', 'a.en']
-    result_cnt = 0
-    checker = True
-    while checker:
-        try:
-            caption = yt.captions[result[result_cnt]]
-            checker = False
-        except:
-            if result_cnt < 2:
-                result_cnt += 1
-            else:
-                checker = False
 
 
 def errorHandling(param1, param2):
@@ -340,7 +326,8 @@ def errorHandling(param1, param2):
 
 
 if __name__ == '__main__':
-    print("Choose an option from below 👇👇\n", "Enter 1 to download a single video or music 😂\n",
+    # print(downloads_path)
+    print("\nChoose an option from below 👇👇\n", "Enter 1 to download a single video or music 😂\n",
           "Enter 2 to download a whole playlist 🥲\n", "Enter 3 to download all videos from channel 😑")
     question = 0
     while True:
