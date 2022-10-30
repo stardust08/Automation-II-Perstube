@@ -8,4 +8,4 @@ How to Get Started?
 5. Yipee!! You can now download youtube videos of playlist , single video/audio , through channel search ,through video search almost from every way.
 6. Explore a bit. Play around it and Thank me later.
 
-                                                                                                            ~Dikshit singh
+                                                                                             ~Dikshit singh
