@@ -1,9 +1,5 @@
-from cgi import print_environ
 from pytube import YouTube, Playlist, Channel, Search, exceptions
-from pytube.cli import on_progress
 import os
-import sys
-from operator import index
 from youtubesearchpython import ChannelsSearch
 from pathlib import Path
 
@@ -326,7 +322,6 @@ def errorHandling(param1, param2):
 
 
 if __name__ == '__main__':
-    # print(downloads_path)
     print("\nChoose an option from below 👇👇\n", "Enter 1 to download a single video or music 😂\n",
           "Enter 2 to download a whole playlist 🥲\n", "Enter 3 to download all videos from channel 😑")
     question = 0
