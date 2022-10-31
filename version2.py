@@ -97,7 +97,63 @@ def searchLink():
     download_options(response,"https://youtu.be/"+videoId)
 
 def playlist():
-    print("running good")
+    url = input("Enter URL of Playlist : ")
+    playlist_url = Playlist(url)
+    print("\nEnter 1 to see the titles of playlist and videos of it 📽️\n", "Enter 2 to download all videos at high resolution ⚡\n",
+          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download just audio of whole playlist 😁")
+    answer = errorHandling(1, 4)
+    match answer:
+        case 1:
+            print(playlist_url.title)
+            for video in playlist_url.videos:
+                print(f'Title : {video.title}')
+            for url in playlist_url.video_urls:
+                print(url)
+        case 2:
+            for url in playlist_url.video_urls:
+                try:
+                    yt = YouTube(url)
+                except exceptions.VideoUnavailable:
+                    print(f'Video {url} is unavaialable, skipping.')
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️")
+                else:
+                    print(f'\n' + fuchsia + 'Downloading: ',
+                          yt.title, '~ viewed', yt.views, 'times.')
+                    yt.streams.filter(
+                        file_extension='mp4').get_highest_resolution().download(local_download_path)
+                    print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 3:
+            for url in playlist_url.video_urls:
+                try:
+                    yt = YouTube(url)
+                except exceptions.VideoUnavailable:
+                    print(f'Video {url} is unavaialable, skipping.')
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️")
+                else:
+                    print(f'\n' + fuchsia + 'Downloading: ',
+                          yt.title, '~ viewed', yt.views, 'times.')
+                yt.streams.filter(
+                    file_extension='mp4').get_lowest_resolution().download(local_download_path)
+                print(f'\nFinished downloading:  {yt.title}' + reset_color)
+        case 4:
+            for url in playlist_url.video_urls:
+                try:
+                    yt = YouTube(url)
+                except exceptions.VideoUnavailable:
+                    print(f'Video {url} is unavaialable, skipping.')
+                except KeyboardInterrupt:
+                    print("OOPs feelin' like very strong keyboard stroke⌨️")
+                else:
+                    print(f'\n' + fuchsia + 'Downloading: ',
+                          yt.title, '~ viewed', yt.views, 'times.')
+                out_file = yt.streams.filter(
+                    only_audio=True).first().download(local_download_path)
+                print(f'\nFinished downloading:  {yt.title}' + reset_color)
+                base, ext = os.path.splitext(out_file)
+                new_file = base + '.mp3'
+                os.rename(out_file, new_file)
 
 def channelLink():
     print("running good")
