@@ -2,6 +2,7 @@ from distutils.log import error
 from multiprocessing.sharedctypes import Value
 import os
 from pathlib import Path
+from turtle import down
 from pydantic import validate_email
 from youtubesearchpython import ChannelsSearch
 from pytube import YouTube, Playlist, Channel, Search, exceptions
@@ -48,7 +49,7 @@ def download_options(answer,link):
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
                 yt.streams.filter(
-                    file_extension='mp4').get_highest_resolution().download(downloads_path)
+                    file_extension='mp4').get_highest_resolution().download(local_download_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 3:
             try:
@@ -61,7 +62,7 @@ def download_options(answer,link):
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
             yt.streams.filter(
-                file_extension='mp4').get_lowest_resolution().download(downloads_path)
+                file_extension='mp4').get_lowest_resolution().download(local_download_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
         case 4:
             try:
@@ -73,7 +74,7 @@ def download_options(answer,link):
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            out_file = yt.streams.filter(only_audio=True).first().download(downloads_path)
+            out_file = yt.streams.filter(only_audio=True).first().download(local_download_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
@@ -87,7 +88,13 @@ def singleLink():
     download_options(response,link)
 
 def searchLink():
-    print("running good")
+    search_result = Search(input("Enter your search : "))
+    print(f'Search complete \n')
+    videoId = search_result.results[0].video_id
+    print("\nEnter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
+          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
+    response = errorHandling(1, 4)
+    download_options(response,"https://youtu.be/"+videoId)
 
 def playlist():
     print("running good")
