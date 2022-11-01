@@ -62,11 +62,14 @@ reset_color = '\033[39m'
 
 
 # i = input("Enter channel name : ")
-# c = Channel(f'https://www.youtube.com/c/neetcode/videos')
+c = Channel(f'https://www.youtube.com/c/neetcode')
 # c = Channel(i)
 # print(f'Downloading videos by: {c.channel_name}')
-# for video in c.video_urls:
-#     print(video)
+c1 = c.channel_url
+c2 = Channel(c1)
+# print(c.channel_url)
+for video_link in c2.video_urls:
+    print(video_link)
 #     yt = YouTube(video)
 #     print(f'\n' + fuchsia + 'Downloading: ',yt.title, '~ viewed', yt.views, 'times.')
 #     out_file = yt.streams.filter(only_audio=True).first().download()
@@ -101,25 +104,25 @@ reset_color = '\033[39m'
 # print(caption.xml_captions)
 
 
-yt = YouTube('https://youtu.be/aV9gfuUhegE')
-caption = "Sorry didn't have any caption in this video"
+# yt = YouTube('https://youtu.be/aV9gfuUhegE')
+# caption = "Sorry didn't have any caption in this video"
+# # print(caption)
+# result = ['en','en-GB','a.en']
+# result_cnt = 0
+# checker = True
+# while checker:
+#     try:
+#         caption = yt.captions[result[result_cnt]]
+#         checker = False
+#     except:
+#         # print("Sorry didn't have any caption")
+#         if result_cnt<2:
+#             result_cnt+=1
+#         else:
+#             checker = False
+
+# # print(caption['en']||caption['en-GB'])
+# #to this selection view go run terminal help file edit
+
 # print(caption)
-result = ['en','en-GB','a.en']
-result_cnt = 0
-checker = True
-while checker:
-    try:
-        caption = yt.captions[result[result_cnt]]
-        checker = False
-    except:
-        # print("Sorry didn't have any caption")
-        if result_cnt<2:
-            result_cnt+=1
-        else:
-            checker = False
-
-# print(caption['en']||caption['en-GB'])
-#to this selection view go run terminal help file edit
-
-print(caption)
-# print(a)
+# # print(a)
