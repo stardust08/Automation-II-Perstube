@@ -27,7 +27,7 @@ def errorHandling(param1, param2):
         except KeyboardInterrupt:
             print("OOPs feelin' like very strong keyboard stroke⌨️")
 
-def download_options(answer,link):
+def singleLink_download_option(answer,link):
     match answer:
         case 1:
             try:
@@ -80,28 +80,7 @@ def download_options(answer,link):
             new_file = base + '.mp3'
             os.rename(out_file, new_file)
 
-def singleLink():
-    link = input("Enter link of video : ")
-    print("Enter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
-          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
-    response = errorHandling(1, 4)
-    download_options(response,link)
-
-def searchLink():
-    search_result = Search(input("Enter your search : "))
-    print(f'Search complete \n')
-    videoId = search_result.results[0].video_id
-    print("\nEnter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
-          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
-    response = errorHandling(1, 4)
-    download_options(response,"https://youtu.be/"+videoId)
-
-def playlist():
-    url = input("Enter URL of Playlist : ")
-    playlist_url = Playlist(url)
-    print("\nEnter 1 to see the titles of playlist and videos of it 📽️\n", "Enter 2 to download all videos at high resolution ⚡\n",
-          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download just audio of whole playlist 😁")
-    answer = errorHandling(1, 4)
+def multiLink_download_options(answer,link):
     match answer:
         case 1:
             print(playlist_url.title)
@@ -154,6 +133,30 @@ def playlist():
                 base, ext = os.path.splitext(out_file)
                 new_file = base + '.mp3'
                 os.rename(out_file, new_file)
+
+def singleLink():
+    link = input("Enter link of video : ")
+    print("Enter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
+          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
+    response = errorHandling(1, 4)
+    singleLink_download_option(response,link)
+
+def searchLink():
+    search_result = Search(input("Enter your search : "))
+    print(f'Search complete \n')
+    videoId = search_result.results[0].video_id
+    print("\nEnter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
+          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
+    response = errorHandling(1, 4)
+    singleLink_download_option(response,"https://youtu.be/"+videoId)
+
+def playlist():
+    url = input("Enter URL of Playlist : ")
+    playlist_url = Playlist(url)
+    print("\nEnter 1 to see the titles of playlist and videos of it 📽️\n", "Enter 2 to download all videos at high resolution ⚡\n",
+          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download just audio of whole playlist 😁")
+    answer = errorHandling(1, 4)
+    
 
 def channelLink():
     print("running good")
