@@ -8,7 +8,7 @@ local_download_path = str(Path.home()/"Downloads")
 fuchsia = '\033[38;2;255;00;255m'  # color as hex #FF00FF
 reset_color = '\033[39m'
 
-
+#global errorhandling program
 def errorHandling(param1, param2):
     while True:
         try:
@@ -21,6 +21,7 @@ def errorHandling(param1, param2):
             print("OOPs feelin' like very strong keyboard stroke⌨️")
             raise Exception("Thanks for coming!!")
 
+#download video program with help of link
 def singleLink_download_option(answer,link):
     match answer:
         case 1:
@@ -93,6 +94,7 @@ def searchLink():
     user_response = errorHandling(1, 4)
     singleLink_download_option(user_response,"https://youtu.be/"+videoId)
 
+#download all videos of a playlist with link 
 def playlist():
     url = input("Enter URL of Playlist : ")
     pl = Playlist(url)
@@ -152,6 +154,7 @@ def playlist():
                 new_file = base + '.mp3'
                 os.rename(out_file, new_file)
 
+#download video of a channel with link
 def channelLink():
     url = input("Enter URL of channel : ")
     channel = Channel(url)
@@ -211,6 +214,7 @@ def channelLink():
                     os.rename(out_file, new_file)
 
 
+#download videos of a channel with search query
 def channelSearch():
     inp = input("Enter channel name : ")
     channelSearch = ChannelsSearch(inp, limit=2)
