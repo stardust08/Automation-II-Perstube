@@ -4,9 +4,9 @@ from youtubesearchpython import ChannelsSearch
 from pathlib import Path
 
 local_download_path = str(Path.home()/"Downloads")
-
+local_music_path = str(Path.home()/"Music")
 fuchsia = '\033[38;2;255;00;255m'  # color as hex #FF00FF
-reset_color = '\033[39m'
+reset_color = '\033[92m'
 
 #global errorhandling program
 def errorHandling(param1, param2):
@@ -69,7 +69,7 @@ def singleLink_download_option(answer,link):
             else:
                 print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            out_file = yt.streams.filter(only_audio=True).first().download(local_download_path)
+            out_file = yt.streams.filter(only_audio=True).first().download(local_music_path)
             print(f'\nFinished downloading:  {yt.title}' + reset_color)
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
@@ -148,7 +148,7 @@ def playlist():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                 out_file = yt.streams.filter(
-                    only_audio=True).first().download(local_download_path)
+                    only_audio=True).first().download(local_music_path)
                 print(f'\nFinished downloading:  {yt.title}' + reset_color)
                 base, ext = os.path.splitext(out_file)
                 new_file = base + '.mp3'
@@ -207,7 +207,7 @@ def channelLink():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     out_file = yt.streams.filter(
-                        only_audio=True).first().download(local_download_path)
+                        only_audio=True).first().download(local_music_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
                     base, ext = os.path.splitext(out_file)
                     new_file = base + '.mp3'
@@ -270,7 +270,7 @@ def channelSearch():
                     print(f'\n' + fuchsia + 'Downloading: ',
                           yt.title, '~ viewed', yt.views, 'times.')
                     out_file = yt.streams.filter(
-                        only_audio=True).first().download(local_download_path)
+                        only_audio=True).first().download(local_music_path)
                     print(f'\nFinished downloading:  {yt.title}' + reset_color)
                     base, ext = os.path.splitext(out_file)
                     new_file = base + '.mp3'
