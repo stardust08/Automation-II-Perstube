@@ -1,7 +1,10 @@
 from pytube import YouTube, Playlist, Channel, Search, exceptions
 import os
+import youtube_dl
 from youtubesearchpython import ChannelsSearch
 from pathlib import Path
+import colorama
+from colorama import Fore
 
 local_download_path = str(Path.home()/"Downloads")
 local_music_path = str(Path.home()/"Music")
@@ -23,65 +26,64 @@ def errorHandling(param1, param2):
 
 #download video program with help of link
 def singleLink_download_option(answer,link):
-    match answer:
-        case 1:
-            try:
-                yt = YouTube(link)
-            except exceptions.VideoUnavailable:
-                print(f'Video {link} is unavaialable, skipping.')
-            except KeyboardInterrupt:
-                print("OOPs feelin' like very strong keyboard stroke⌨️")
-            else:
-                print(yt.title)
-        case 2:
-            try:
-                yt = YouTube(link)
-            except exceptions.VideoUnavailable:
-                print(f'Video {link} is unavaialable, skipping.')
-            except KeyboardInterrupt:
-                print("OOPs feelin' like very strong keyboard stroke⌨️")
-            else:
-                print(f'\n' + fuchsia + 'Downloading: ',
+            match answer:
+                case 1:
+                    try:
+                        yt = YouTube(link)
+                    except exceptions.VideoUnavailable:
+                        print(f'Video {link} is unavaialable, skipping.')
+                    except KeyboardInterrupt:
+                        print("OOPs feelin' like very strong keyboard stroke⌨️")
+                    else:
+                        print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-                yt.streams.filter(
+                        yt.streams.filter(
                     file_extension='mp4').get_highest_resolution().download(local_download_path)
-                print(f'\nFinished downloading:  {yt.title}' + reset_color)
-        case 3:
-            try:
-                yt = YouTube(link)
-            except exceptions.VideoUnavailable:
-                print(f'Video {link} is unavaialable, skipping.')
-            except KeyboardInterrupt:
-                print("OOPs feelin' like very strong keyboard stroke⌨️")
-            else:
-                print(f'\n' + fuchsia + 'Downloading: ',
+                        print(f'\nFinished downloading:  {yt.title}' + reset_color)
+                case 2:
+                    try:
+                        yt = YouTube(link)
+                    except exceptions.VideoUnavailable:
+                        print(f'Video {link} is unavaialable, skipping.')
+                    except KeyboardInterrupt:
+                        print("OOPs feelin' like very strong keyboard stroke⌨️")
+                    else:
+                        print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            yt.streams.filter(
+                        yt.streams.filter(
                 file_extension='mp4').get_lowest_resolution().download(local_download_path)
-            print(f'\nFinished downloading:  {yt.title}' + reset_color)
-        case 4:
-            try:
-                yt = YouTube(link)
-            except exceptions.VideoUnavailable:
-                print(f'Video {link} is unavaialable, skipping.')
-            except KeyboardInterrupt:
-                print("OOPs feelin' like very strong keyboard stroke⌨️")
-            else:
-                print(f'\n' + fuchsia + 'Downloading: ',
+                        print(f'\nFinished downloading:  {yt.title}' + reset_color)
+                case 3:
+                    try:
+                        yt = YouTube(link)
+                    except exceptions.VideoUnavailable:
+                        print(f'Video {link} is unavaialable, skipping.')
+                    except KeyboardInterrupt:
+                        print("OOPs feelin' like very strong keyboard stroke⌨️")
+                    else:
+                        print(f'\n' + fuchsia + 'Downloading: ',
                       yt.title, '~ viewed', yt.views, 'times.')
-            out_file = yt.streams.filter(only_audio=True).first().download(local_music_path)
-            print(f'\nFinished downloading:  {yt.title}' + reset_color)
-            base, ext = os.path.splitext(out_file)
-            new_file = base + '.mp3'
-            os.rename(out_file, new_file)
+                    out_file = yt.streams.filter(only_audio=True).first().download(local_music_path)
+                    print(f'\nFinished downloading:  {yt.title}' + reset_color)
+                    base, ext = os.path.splitext(out_file)
+                    new_file = base + '.mp3'
+                    os.rename(out_file, new_file)
 
 
 #download single video with the help of provided link
 def singleLink():
     link = input("Enter link of video : ")
-    print("Enter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
-          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
-    user_response = errorHandling(1, 4)
+    try:
+        yt = YouTube(link)
+    except exceptions.VideoUnavailable:
+        print(f'Video {link} is unavaialable, skipping.')
+    except KeyboardInterrupt:
+        print("OOPs feelin' like very strong keyboard stroke⌨️")
+    else:
+        print(Fore.LIGHTMAGENTA_EX+yt.title)
+    print(Fore.LIGHTYELLOW_EX+"\nEnter 1 to download all videos at high resolution ⚡\n",
+          "Enter 2 to download all videos in low resolution 🐽\n", "Enter 3 to download audio 🎶\n")
+    user_response = errorHandling(1, 3)
     singleLink_download_option(user_response,link)
 
 #download single video with user search query
@@ -89,10 +91,20 @@ def searchLink():
     search_result = Search(input("Enter your search : "))
     print(f'Search complete \n')
     videoId = search_result.results[0].video_id
-    print("\nEnter 1 to see the title of video \n", "Enter 2 to download all videos at high resolution ⚡\n",
-          "Enter 3 to download all videos in low resolution 🐽\n", "Enter 4 to download audio 🎶\n")
-    user_response = errorHandling(1, 4)
-    singleLink_download_option(user_response,"https://youtu.be/"+videoId)
+    link = "https://youtu.be/"+videoId
+    try:
+        yt = YouTube(link)
+    except exceptions.VideoUnavailable:
+        print(f'Video {link} is unavaialable, skipping.')
+    except KeyboardInterrupt:
+        print("OOPs feelin' like very strong keyboard stroke⌨️")
+    else:
+        print(Fore.GREEN+yt.title)
+
+    print(Fore.LIGHTGREEN_EX+"\nEnter 1 to download all videos at high resolution ⚡\n",
+          "Enter 2 to download all videos in low resolution 🐽\n", "Enter 3 to download audio 🎶\n")
+    user_response = errorHandling(1, 3)
+    singleLink_download_option(user_response,link)
 
 #download all videos of a playlist with link 
 def playlist():
